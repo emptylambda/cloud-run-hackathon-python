@@ -21,6 +21,7 @@ from flask import Flask, request, jsonify
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
+hitCounts = 0
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
 pureMoves = [ 'F', 'L', 'R']
@@ -60,12 +61,6 @@ def shouldFire(direction, x, y, state):
     logger.info("Find NO shouldFire")
     return False
 
-def shouldTurn(direction, x, y, state):
-    for k in state:
-        if state[k]['y'] == y and state[k]['x'] > x and state[k]['x'] < x + 4:
-            logger.info("shouldFire")
-            return True
-    return False
 
 @app.route("/", methods=['GET'])
 def index():
@@ -79,8 +74,15 @@ def move():
     me    = state[myUrl]
 
     logger.info("{} {} {}".format(me['x'], me['y'], me['direction']))
+
+    if(hitCounts > 3):
+        hitCounts = 0
+        return 'R'
+
     if(me['wasHit']):
+        hitCounts += 1
         return 'F'
+
     if(shouldFire(me['direction'], me['x'], me['y'], state)):
         return 'T'
 
