@@ -52,7 +52,7 @@ def move():
 
     # imHit = state[myURL]
     # logger.info(imHit)
-    logger.info(state2Map(state))
+    # logger.info(state2Map(state))
 
     return  moves[random.randrange(len(moves))]
 
