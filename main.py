@@ -75,6 +75,7 @@ def move():
     state = data['arena']['state']
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
+    logger.info(me)
     if(shouldFire(me, state)):
         return 'T'
 
