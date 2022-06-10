@@ -25,6 +25,9 @@ app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
 pureMoves = [ 'T', 'L', 'R']
 
+def shouldFire(direction, x, y, state):
+    return False
+
 @app.route("/", methods=['GET'])
 def index():
     return "Let the battle begin!"
@@ -36,10 +39,10 @@ def move():
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
     logger.info("{} {} {}".format(me['x'], me['y'], me['direction']))
-    # if(shouldFire(me['direction'], me['x'], me['y'], state)):
-    #     return 'T'
+    if(shouldFire(me['direction'], me['x'], me['y'], state)):
+        return 'T'
 
-    return  pureMoves[random.randrange(len(moves))]
+    return  pureMoves[random.randrange(len(pureMoves))]
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
