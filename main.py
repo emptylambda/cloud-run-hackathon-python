@@ -76,8 +76,8 @@ def move():
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
     logger.info(me)
-    if(shouldFire(me, state)):
-        return 'T'
+    #if(shouldFire(me, state)):
+    #    return 'T'
 
     return  moves[random.randrange(len(moves))]
 
