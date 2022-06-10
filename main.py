@@ -75,7 +75,7 @@ def move():
     me    = state[myUrl]
     logger.info(me)
     if(shouldFire(me['direction'], me['x'], me['y'], state)):
-    #    return 'T'
+        return 'T'
 
     return  pureMoves[random.randrange(len(moves))]
 
