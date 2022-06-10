@@ -33,7 +33,7 @@ def move():
     data = request.get_json()
 
     # logger.info(data['arena'])
-    myURL = data['_link']['self']['href']
+    myURL = data['_links']['self']['href']
     logger.info(myURL)
 
     enemies = data['arena']['state']
