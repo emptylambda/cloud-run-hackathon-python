@@ -25,6 +25,8 @@ def shouldFire(me, state):
     facing = me['direction']
     myX = me['x']
     myY = me['y']
+    logger.info("X: {}, Y: {}".format(myX, myY))
+    return False
 
 def isSafeMove(me, size):
     # avoid going into corners
@@ -39,6 +41,9 @@ def state2Map(state):
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
 
+def dodge(me, state):
+    return 'F'
+
 @app.route("/", methods=['GET'])
 def index():
     return "Let the battle begin!"
@@ -47,12 +52,9 @@ def index():
 def move():
     data = request.get_json()
     state = data['arena']['state']
-    # logger.info(data['arena'])
-    myURL = data['_links']['self']['href']
-
-    # imHit = state[myURL]
-    # logger.info(imHit)
-    # logger.info(state2Map(state))
+    me = data['_links']['self']['href']
+    if(shouldFire):
+        return 'T'
 
     return  moves[random.randrange(len(moves))]
 
