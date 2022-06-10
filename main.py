@@ -25,7 +25,6 @@ def shouldFire(me, state):
     facing = me['direction']
     myX = me['x']
     myY = me['y']
-    logger.info("X: {}, Y: {}".format(myX, myY))
     return False
 
 def isSafeMove(me, size):
@@ -52,7 +51,8 @@ def index():
 def move():
     data = request.get_json()
     state = data['arena']['state']
-    me = data['_links']['self']['href']
+    myUrl = data['_links']['self']['href']
+    me    = state[myUrl]
     if(shouldFire(me, state)):
         return 'T'
 
