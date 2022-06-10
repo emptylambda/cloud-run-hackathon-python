@@ -26,8 +26,18 @@ moves = ['F', 'T', 'L', 'R']
 pureMoves = [ 'T', 'L', 'R']
 
 def shouldFire(direction, x, y, state):
+    if direction == "E":
+        logger.info("facing EAST")
+    if direction == "W":
+        logger.info("facing W")
+    if direction == "N":
+        logger.info("facing N")
+    if direction == "S":
+        logger.info("facing S")
+
     for k in state:
         logger.info("{}: ({}, {})".format(k, state[k]['x'], state[k]['y']))
+
     return False
 
 @app.route("/", methods=['GET'])
