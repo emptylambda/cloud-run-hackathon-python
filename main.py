@@ -21,7 +21,8 @@ from flask import Flask, request, jsonify
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
-def shouldFire(me, state):
+def shouldFire(facing, x, y state):
+    logger.info("faceing: {} (x,y) {} {}".format(facting, x, y))
     # facing = me['direction']
     # myX = me['x']
     # myY = me['y']
@@ -73,7 +74,7 @@ def move():
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
     logger.info(me)
-    #if(shouldFire(me, state)):
+    if(shouldFire(me['direction'], me['x'], me['y'], state)):
     #    return 'T'
 
     return  pureMoves[random.randrange(len(moves))]
