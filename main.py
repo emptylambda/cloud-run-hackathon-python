@@ -73,9 +73,9 @@ def move():
     state = data['arena']['state']
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
-    logger.info(me)
-    if(shouldFire(me['direction'], me['x'], me['y'], state)):
-        return 'T'
+    logger.info("{} {} {}".format(me['x'], me['y'], me['direction']))
+    # if(shouldFire(me['direction'], me['x'], me['y'], state)):
+    #     return 'T'
 
     return  pureMoves[random.randrange(len(moves))]
 
