@@ -25,6 +25,28 @@ def shouldFire(me, state):
     facing = me['direction']
     myX = me['x']
     myY = me['y']
+    if facing == "E":
+        for k in state:
+            if state[k]['x'] > myX and state[k]['x'] < myX + 3:
+                logging.info("SHOULD FIRE")
+                return True
+    if facing == "W":
+        for k in state:
+            if state[k]['x'] < myX and state[k]['x'] > myX - 3:
+                logging.info("SHOULD FIRE")
+                return True
+    if facing == "N":
+        for k in state:
+            if state[k]['y'] < myY and state[k]['y'] > myX - 3:
+                logging.info("SHOULD FIRE")
+                return True
+    if facing == "S":
+        for k in state:
+            if state[k]['y'] < myY and state[k]['y'] + myX + 3:
+                logging.info("SHOULD FIRE")
+                return True
+
+    logging.info("SHOULD NOT FIRE")
     return False
 
 def isSafeMove(me, size):
