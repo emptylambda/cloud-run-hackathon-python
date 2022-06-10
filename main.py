@@ -53,7 +53,7 @@ def move():
     data = request.get_json()
     state = data['arena']['state']
     me = data['_links']['self']['href']
-    if(shouldFire):
+    if(shouldFire(me, state)):
         return 'T'
 
     return  moves[random.randrange(len(moves))]
