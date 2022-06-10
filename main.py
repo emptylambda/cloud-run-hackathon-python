@@ -21,6 +21,21 @@ from flask import Flask, request, jsonify
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
+def shouldFire(me, state):
+    facing = me['direction']
+    myX = me['x']
+    myY = me['y']
+
+def isSafeMove(me, size):
+    # avoid going into corners
+    return True
+
+def state2Map(state):
+    botLocs = []
+    for k in state:
+        print(state[k]['x'])
+        print(state[k]['y'])
+
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
 
@@ -35,16 +50,9 @@ def move():
     # logger.info(data['arena'])
     myURL = data['_links']['self']['href']
 
-    imHit = state[myURL]
-    logger.info(imHit)
-
-    enemies = data['arena']['state']
-    logger.info(f"Number of enemies %d", len(enemies))
-
-    # prevent error
-    if data is None:
-        return moves[random.randrange(len(moves))]
-
+    # imHit = state[myURL]
+    # logger.info(imHit)
+    state2Map(state)
 
     return  moves[random.randrange(len(moves))]
 
