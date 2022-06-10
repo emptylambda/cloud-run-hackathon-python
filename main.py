@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
-pureMoves = [ 'T', 'L', 'R']
+pureMoves = [ 'F', 'L', 'R']
 
 def shouldFire(direction, x, y, state):
     if direction == "E":
