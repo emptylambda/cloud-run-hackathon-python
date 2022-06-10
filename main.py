@@ -34,9 +34,8 @@ def move():
     state = data['arena']['state']
     # logger.info(data['arena'])
     myURL = data['_links']['self']['href']
-    logger.info(myURL)
 
-    imHit = state[myURL]['wasHit']
+    imHit = state[myURL]
     logger.info(imHit)
 
     enemies = data['arena']['state']
