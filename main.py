@@ -72,6 +72,7 @@ def move():
     state = data['arena']['state']
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
+    global hitCounts
 
     logger.info("{} {} {}".format(me['x'], me['y'], me['direction']))
 
