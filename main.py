@@ -16,7 +16,7 @@
 import os
 import logging
 import random
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
@@ -30,11 +30,9 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    request.get_data()
-    logger.info("I'm at: {}".format(request.json['self']))
-    logger.info(request.json)
+    data = jsonify(request.json)
+    logger.info(data)
     return moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
-  
