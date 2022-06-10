@@ -75,11 +75,13 @@ def move():
 
     logger.info("{} {} {}".format(me['x'], me['y'], me['direction']))
 
-    if(hitCounts > 3):
+    if(hitCounts > 2):
+        logger.info("DODGE")
         hitCounts = 0
         return 'R'
 
     if(me['wasHit']):
+        logger.info("GOT HIT MOVE")
         hitCounts += 1
         return 'F'
 
