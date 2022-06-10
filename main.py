@@ -31,8 +31,13 @@ def index():
 @app.route("/", methods=['POST'])
 def move():
     data = request.get_json()
+
+    # prevent error
+    if data is None:
+        return moves[random.randrange(len(moves))]
+
     logger.info(data['arena'])
-    return moves[random.randrange(len(moves))]
+    return 'T' # moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
