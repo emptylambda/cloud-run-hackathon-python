@@ -33,8 +33,8 @@ def isSafeMove(me, size):
 def state2Map(state):
     botLocs = []
     for k in state:
-        print(state[k]['x'])
-        print(state[k]['y'])
+        botLocs.append((state[k]['x'], state[k]['y']))
+    return botLocs
 
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
@@ -52,7 +52,7 @@ def move():
 
     # imHit = state[myURL]
     # logger.info(imHit)
-    state2Map(state)
+    logger.info(state2Map(state))
 
     return  moves[random.randrange(len(moves))]
 
