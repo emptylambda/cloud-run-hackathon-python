@@ -32,11 +32,18 @@ def index():
 def move():
     data = request.get_json()
 
+    # logger.info(data['arena'])
+    myURL = data['_link']['self']['href']
+    logger.info(myURL)
+
+    enemies = data['arena']['state']
+    logger.info(f"Number of enemies %d", len(enemies))
+
     # prevent error
     if data is None:
         return moves[random.randrange(len(moves))]
 
-    logger.info(data['arena'])
+
     return 'T' # moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
