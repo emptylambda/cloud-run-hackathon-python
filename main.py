@@ -31,10 +31,13 @@ def index():
 @app.route("/", methods=['POST'])
 def move():
     data = request.get_json()
-
+    state = data['arena']['state']
     # logger.info(data['arena'])
     myURL = data['_links']['self']['href']
     logger.info(myURL)
+
+    imHit = state[myURL]['wasHit']
+    logger.info(imHit)
 
     enemies = data['arena']['state']
     logger.info(f"Number of enemies %d", len(enemies))
