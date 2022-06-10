@@ -29,28 +29,28 @@ def shouldFire(direction, x, y, state):
     if direction == "E":
         logger.info("facing EAST")
         for k in state:
-            if state[k]['y'] == y and state[k]['x'] < x and state[k]['x'] > x - 4:
+            if state[k]['y'] == y and state[k]['x'] > x and state[k]['x'] < x + 4:
                 logger.info("shouldFire")
                 return True
 
     if direction == "W":
         logger.info("facing W")
         for k in state:
-            if state[k]['y'] == y and state[k]['x'] > x and state[k]['x'] < x + 4:
+            if state[k]['y'] == y and state[k]['x'] < x and state[k]['x'] > x - 4:
                 logger.info("shouldFire")
                 return True
 
     if direction == "N":
         logger.info("facing N")
         for k in state:
-            if state[k]['x'] == x and state[k]['y'] > y and state[k]['y'] < y + 4:
+            if state[k]['x'] == x and state[k]['y'] < y and state[k]['y'] > y - 4:
                 logger.info("shouldFire")
                 return True
 
     if direction == "S":
         logger.info("facing S")
         for k in state:
-            if state[k]['x'] == x and state[k]['y'] < y and state[k]['y'] > y - 4:
+            if state[k]['x'] == x and state[k]['y'] > y and state[k]['y'] < y + 4:
                 logger.info("shouldFire")
                 return True
 
