@@ -60,6 +60,13 @@ def shouldFire(direction, x, y, state):
     logger.info("Find NO shouldFire")
     return False
 
+def shouldTurn(direction, x, y, state):
+    for k in state:
+        if state[k]['y'] == y and state[k]['x'] > x and state[k]['x'] < x + 4:
+            logger.info("shouldFire")
+            return True
+    return False
+
 @app.route("/", methods=['GET'])
 def index():
     return "Let the battle begin!"
@@ -70,7 +77,10 @@ def move():
     state = data['arena']['state']
     myUrl = data['_links']['self']['href']
     me    = state[myUrl]
+
     logger.info("{} {} {}".format(me['x'], me['y'], me['direction']))
+    if(me['wasHit']):
+        return 'F'
     if(shouldFire(me['direction'], me['x'], me['y'], state)):
         return 'T'
 
