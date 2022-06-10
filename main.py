@@ -22,36 +22,32 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 def shouldFire(me, state):
-    facing = me['direction']
-    myX = me['x']
-    myY = me['y']
-    if facing == "E":
-        for k in state:
-            if state[k]['x'] > myX and state[k]['x'] < myX + 3:
-                logging.info("SHOULD FIRE")
-                return True
-    if facing == "W":
-        for k in state:
-            if state[k]['x'] < myX and state[k]['x'] > myX - 3:
-                logging.info("SHOULD FIRE")
-                return True
-    if facing == "N":
-        for k in state:
-            if state[k]['y'] < myY and state[k]['y'] > myX - 3:
-                logging.info("SHOULD FIRE")
-                return True
-    if facing == "S":
-        for k in state:
-            if state[k]['y'] < myY and state[k]['y'] + myX + 3:
-                logging.info("SHOULD FIRE")
+    # facing = me['direction']
+    # myX = me['x']
+    # myY = me['y']
+    # if facing == "E":
+    #     for k in state:
+    #         if state[k]['x'] > myX and state[k]['x'] < myX + 3:
+    #             logging.info("SHOULD FIRE")
+    #             return True
+    # if facing == "W":
+    #     for k in state:
+    #         if state[k]['x'] < myX and state[k]['x'] > myX - 3:
+    #             logging.info("SHOULD FIRE")
+    #             return True
+    # if facing == "N":
+    #     for k in state:
+    #         if state[k]['y'] < myY and state[k]['y'] > myX - 3:
+    #             logging.info("SHOULD FIRE")
+    #             return True
+    # if facing == "S":
+    #     for k in state:
+    #         if state[k]['y'] < myY and state[k]['y'] + myX + 3:
+    #             logging.info("SHOULD FIRE")
                 return True
 
     logging.info("SHOULD NOT FIRE")
     return False
-
-def isSafeMove(me, size):
-    # avoid going into corners
-    return True
 
 def state2Map(state):
     botLocs = []
@@ -61,6 +57,7 @@ def state2Map(state):
 
 app = Flask(__name__)
 moves = ['F', 'T', 'L', 'R']
+pureMoves = [ 'T', 'L', 'R']
 
 def dodge(me, state):
     return 'F'
@@ -79,7 +76,7 @@ def move():
     #if(shouldFire(me, state)):
     #    return 'T'
 
-    return  moves[random.randrange(len(moves))]
+    return  pureMoves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
   app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
