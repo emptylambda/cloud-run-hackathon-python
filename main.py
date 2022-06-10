@@ -30,7 +30,7 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    data = jsonify(request.json)
+    data = request.get_json()
     logger.info(data)
     return moves[random.randrange(len(moves))]
 
